@@ -1,12 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeMain from './homeMain';
+import NewPost from './newpost';
 import '../App.css';
 
 function Home() {
     return (
-        <div>
-
-        </div>
+        <>
+            <Router>
+                <HomeMain />
+                <Routes>
+                    <Route exact path="/new-blogs" exactelement={<NewPost />} />
+                </Routes>
+            </Router>
+        </>
     );
 }
 

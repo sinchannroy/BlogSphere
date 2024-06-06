@@ -5,7 +5,7 @@ import '../App.css';
 function Posts() {
     return (
         <div>
-
+            
         </div>
     );
 }
