@@ -8,7 +8,7 @@ function Navbar () {
             <div className="container">
                 <nav className="navbar navbar-expand-lg navbar-dark" id="navbar">
                     <Link className="navbar-brand effect-shine" to="/">
-                        <img className="logo" src="../src/assets/blogIcon.png"/>
+                        <img className="logo" src="../src/assets/blogIcons.png"/>
                     </Link>
                     <button
                         className="navbar-toggler"
