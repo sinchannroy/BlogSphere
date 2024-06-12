@@ -16,6 +16,7 @@ function HomeMain() {
             welcomeSpeechDiv.style.top = 60 + scrollPosition + '%';
             welcomeSpeechDiv.style.left = '50%';
         };
+        //correct the effects after scrolling
 
         window.addEventListener('scroll', handleScroll);
 
