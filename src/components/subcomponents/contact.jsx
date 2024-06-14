@@ -55,7 +55,7 @@ function Contact() {
                                             <div>
                                                 <h4 className="mb-3">LinkedIn</h4>
                                                 <p className="mb-0">
-                                                <a className="link-secondary text-decoration-none" to="https://www.linkedin.com/in/sinchannroy/">linkedin.com/in/sinchannroy</a>
+                                                <a className="link-secondary text-decoration-none" to="https://www.linkedin.com/in/sinchannroy/">bit.ly/linked9In</a>
                                                 </p>
                                             </div>
                                             </div>

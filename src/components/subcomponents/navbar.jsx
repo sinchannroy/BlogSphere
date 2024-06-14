@@ -45,7 +45,7 @@ function Navbar () {
     return (
         <div id="navbar" ref={navbarRef}>
             <div className="container">
-                <nav className="navbar navbar-expand-lg navbar-dark" id="navbar">
+                <nav className="navbar navbar-expand-lg navbar-custom" id="navbar">
                     <Link className="navbar-brand effect-shine" to="/">
                         <img className="logo" src="../src/assets/blogIcons.png"/>
                     </Link>
@@ -60,7 +60,7 @@ function Navbar () {
                     >
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div className="collapse navbar-collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
                                 <Link className="nav-Link" to="/" onclick="scrollToTop()">Home</Link>

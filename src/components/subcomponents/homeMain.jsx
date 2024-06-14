@@ -7,13 +7,34 @@ function HomeMain() {
         const handleScroll = () => {
             var scrollPosition = window.scrollY;
             var welcomeSpeechDiv = document.querySelector('.welcome-speech');
+            var blogButtonDiv = document.querySelector('.blog-button');
 
-            welcomeSpeechDiv.style.top = 50 + scrollPosition + '%';
+            if(window.innerWidth >= 1140) {
+                welcomeSpeechDiv.style.top = 50 + scrollPosition + '%';
+                blogButtonDiv.style.top = 65 + scrollPosition + '%';
+            }
+
+            else if (window.innerWidth >= 1027 && window.innerWidth < 1140) {
+                welcomeSpeechDiv.style.top = 50 + scrollPosition + '%';
+                blogButtonDiv.style.top = 72 + scrollPosition + '%';
+            }
+
+            else if (window.innerWidth >= 735 && window.innerWidth < 1027) {
+                welcomeSpeechDiv.style.top = 50 + scrollPosition + '%';
+                blogButtonDiv.style.top = 72 + scrollPosition + '%';
+            }
+
+            else if (window.innerWidth >= 500 && window.innerWidth < 735) {
+                welcomeSpeechDiv.style.top = 50 + scrollPosition + '%';
+                blogButtonDiv.style.top = 74 + scrollPosition + '%';
+            }
+
+            else if (window.innerWidth < 500) {
+                welcomeSpeechDiv.style.top = 50 + scrollPosition + '%';
+                blogButtonDiv.style.top = 72 + scrollPosition + '%';
+            }
+
             welcomeSpeechDiv.style.left = '50%';
-
-            var welcomeSpeechDiv = document.querySelector('.blog-button');
-
-            welcomeSpeechDiv.style.top = 60 + scrollPosition + '%';
             welcomeSpeechDiv.style.left = '50%';
         };
         //correct the effects after scrolling

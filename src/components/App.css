@@ -1,12 +1,12 @@
 /**************  Header Page ***************/
 #navbar {
-    position: sticky;
     top: 0;
     display: flex;
     width: 100%;
     height: 70px;
     background-color: #C9A9A6;
-    z-index: 10000;
+    position: relative;
+    z-index: 1000;
 }
 
 .logo {
@@ -35,6 +35,10 @@
     text-decoration: none;
 }
 
+.navbar-toggler {
+    position: relative;
+    z-index: 2000;
+}
 
 /**************  Home Page ***************/
 #home {
@@ -48,11 +52,12 @@
 
 .welcome-speech {
     position: fixed;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
     color: whitesmoke;
+    overflow: hidden;
 }
 
 .welcome {
@@ -75,7 +80,7 @@
 
 .blog-button {
     position: fixed;
-    top: 60%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -96,46 +101,67 @@
     background: orange;
 }
 
-/* Styles for screens 990px and smaller */
+@media only screen and (max-width: 1160px) {
+    .blog-button {
+        top: 27rem;
+    }
+}
+
 @media only screen and (max-width: 1140px) {
     .blog-button {
-        top: 27rem;
+        top: 30rem;
     }
 }
 
-/* Styles for screens 768px and smaller */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1027px) {
     .blog-button {
-        top: 27rem;
+        top: 30rem;
     }
 }
 
-/* Styles for screens 600px and smaller */
-@media only screen and (max-width: 729px) {
+@media only screen and (max-width: 735px) {
     .blog-button {
-        top: 27rem;
-    }
-
-    .welcome-speech {
-        font-size: 75%;
+        top: 30rem;
     }
 }
 
+@media only screen and (max-width: 500px) {
+    .blog-button {
+        top: 29rem;
+    }
+}
 
 /**************  Posts Page ***************/
 
 
 /**************  Contacts Page ***************/
-#contact {
-    
-}
-
 .bg-light {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 115vh;
 }
+
+@media screen and (max-width: 991px) {
+    .bg-light {
+        height: auto;
+    }
+
+    .container {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .bg-light {
+        height: auto;
+    }
+
+    .container {
+        width: 75%;
+    }
+}
+
 /**************  Footer Page ***************/
 #footer {
     background-color: white;
@@ -202,7 +228,6 @@
     font-size: 1rem;
 }
 
-/************** Media Queries for ******************/
 
 
 
