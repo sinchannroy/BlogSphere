@@ -1,9 +1,22 @@
 import React from 'react'
+import Navbar from '../navbar/Navbar'
+import Footer from '../footer/Footer'
 
-export default function Layout() {
-  return (
-    <div>
-      
-    </div>
-  )
+function Layout({ children }) {
+    return (
+        <div>
+            {/* Navbar  */}
+            <Navbar />
+
+            {/* main Content  */}
+            <div className="content min-h-screen">
+                {children}
+            </div>
+
+            {/* Footer  */}
+            <Footer />
+        </div>
+    )
 }
+
+export default Layout
