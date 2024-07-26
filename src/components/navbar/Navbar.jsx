@@ -20,6 +20,8 @@ export default function Nav() {
     const context = useContext(myContext);
     const { mode, toggleMode } = context;
 
+    //* Admin
+    const admin = localStorage.getItem('admin');
 
     // All NavList 
     const navList = (
@@ -111,25 +113,27 @@ export default function Nav() {
 
                         {/* Admin Profile Pic */}
                         <div>
-                            <Link to={'/dashboard'}>
-                                <div className="">
-                                    <Avatar
-                                        key={1}
-                                        src={'https://cdn-icons-png.flaticon.com/128/3135/3135715.png'}
-                                        alt="avatar"
-                                        withBorder={true}
-                                        className="p-0.5 text-red-500 w-10 h-10"
-                                        style={{
-                                            border:
-                                                mode === 'dark'
-                                                    ?
-                                                    '2px solid rgb(226, 232, 240)'
-                                                    :
-                                                    '2px solid rgb(30, 41, 59)'
-                                        }}
-                                    />
-                                </div>
-                            </Link>
+                            {admin 
+                            ? <Link to={'/dashboard'}>
+                            <div className="">
+                                <Avatar
+                                    key={1}
+                                    src={'https://cdn-icons-png.flaticon.com/128/3135/3135715.png'}
+                                    alt="avatar"
+                                    withBorder={true}
+                                    className="p-0.5 text-red-500 w-10 h-10"
+                                    style={{
+                                        border:
+                                            mode === 'dark'
+                                                ?
+                                                '2px solid rgb(226, 232, 240)'
+                                                :
+                                                '2px solid rgb(30, 41, 59)'
+                                    }}
+                                />
+                            </div>
+                        </Link>
+                        : ""}
                         </div>
 
                         {/* dark And Light Button */}

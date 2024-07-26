@@ -2,18 +2,72 @@ import React, { useState, useContext } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { BsFillArrowLeftCircleFill } from "react-icons/bs"
 import myContext from '../../../context/data/myContext';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
     Button,
     Typography,
 } from "@material-tailwind/react";
+import { Timestamp, addDoc, collection } from 'firebase/firestore';
+import toast from 'react-hot-toast';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { fireDb, storage } from '../../../firebase/FirebaseConfig';
 
 function CreateBlog() {
     const context = useContext(myContext);
     const { mode } = context;
 
-    const [blogs, setBlogs] = useState('');
+    const navigate = useNavigate();
+
+    // const [blogs, setBlogs] = useState('');
+    const [blogs, setBlogs] = useState({
+        title: '',
+        category: '',
+        content: '',
+        time: Timestamp.now(),
+    });
     const [thumbnail, setthumbnail] = useState();
+
+    //* Add Post Function 
+    const addPost = async () => {
+        if (blogs.title === "" || blogs.category === "" || blogs.content === "" || blogs.thumbnail === "") {
+            toast.error('Please Fill All Fields');
+        }
+        // console.log(blogs.content)
+        uploadImage()
+    }
+
+    //* Upload Image Function 
+    const uploadImage = () => {
+        if (!thumbnail) return;
+        const imageRef = ref(storage, `blogimage/${thumbnail.name}`);
+        uploadBytes(imageRef, thumbnail).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                const productRef = collection(fireDb, "blogPost")
+                try {
+                    addDoc(productRef, {
+                        blogs,
+                        thumbnail: url,
+                        time: Timestamp.now(),
+                        date: new Date().toLocaleString(
+                            "en-US",
+                            {
+                                month: "short",
+                                day: "2-digit",
+                                year: "numeric",
+                            }
+                        )
+                    })
+                    navigate('/dashboard')
+                    toast.success('Post Added Successfully');
+
+
+                } catch (error) {
+                    toast.error(error)
+                    console.log(error)
+                }
+            });
+        });
+    }
 
     const [text, settext] = useState('');
     console.log("Value: ",);
@@ -104,6 +158,8 @@ function CreateBlog() {
                                 : 'rgb(226, 232, 240)'
                         }}
                         name="title"
+                        onChange={(e) => setBlogs({ ...blogs, title: e.target.value })} 
+                        value={blogs.title}
                     />
                 </div>
 
@@ -122,6 +178,8 @@ function CreateBlog() {
                                 : 'rgb(226, 232, 240)'
                         }}
                         name="category"
+                        onChange={(e) => setBlogs({ ...blogs, category: e.target.value })} 
+                        value={blogs.category}
                     />
                 </div>
 
@@ -129,7 +187,7 @@ function CreateBlog() {
                 <Editor
                     apiKey='9jo3lu73p1xbfqaw6jvgmsbrmy7qr907nqeafe1wbek6os9d'
                     onEditorChange={(newValue, editor) => {
-                        setBlogs({ blogs, content: newValue });
+                        setBlogs({ ...blogs, content: newValue });
                         settext(editor.getContent({ format: 'text' }));
                     }}
                     onInit={(evt, editor) => {
@@ -142,6 +200,7 @@ function CreateBlog() {
 
                 {/* Five Submit Button  */}
                 <Button className=" w-full mt-5"
+                onClick={addPost}
                     style={{
                         background: mode === 'dark'
                             ? 'rgb(226, 232, 240)'
