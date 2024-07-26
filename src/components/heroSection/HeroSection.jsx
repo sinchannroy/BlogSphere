@@ -17,7 +17,7 @@ function HeroSection() {
                         <div className="mb-2">
                             {/* Image  */}
                             <div className="flex justify-center">
-                                <img src="../../../src/assets/centreIcon.png" alt="" />
+                                <img src="https://cdn-icons-png.flaticon.com/128/3685/3685253.png" alt="" />
                             </div>
 
                             {/* Text  */}
