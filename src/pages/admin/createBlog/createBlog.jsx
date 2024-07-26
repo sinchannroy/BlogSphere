@@ -77,6 +77,10 @@ function CreateBlog() {
     function createMarkup(c) {
         return { __html: c };
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <div className=' container mx-auto max-w-5xl py-6'>
             <div className="p-5" style={{

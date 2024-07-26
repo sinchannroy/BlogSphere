@@ -4,9 +4,10 @@ import myContext from '../../../context/data/myContext';
 import { Button } from '@material-tailwind/react';
 import { Link, useNavigate } from 'react-router-dom';
 
+
 function Dashboard() {
     const context = useContext(myContext);
-    const { mode, getAllBlog } = context;
+    const { mode, getAllBlog, deleteBlogs } = context;
 
     const navigate = useNavigate();
 
@@ -15,6 +16,11 @@ function Dashboard() {
         localStorage.clear();
         navigate('/')
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+    
     return (
         <Layout>
             <div className="py-10">
@@ -107,35 +113,28 @@ function Dashboard() {
                                     className="text-xs ">
                                     <tr>
                                         <th style={{ color: mode === 'dark' ? 'rgb(30, 41, 59)' : 'white' }} scope="col" className="px-6 py-3">
-                                            S.No
                                         </th>
                                         <th style={{ color: mode === 'dark' ? 'rgb(30, 41, 59)' : 'white' }} scope="col" className="px-6 py-3">
-                                            Thumbnail
                                         </th>
                                         <th style={{ color: mode === 'dark' ? 'rgb(30, 41, 59)' : 'white' }} scope="col" className="px-6 py-3">
-                                            Title
                                         </th>
                                         <th style={{ color: mode === 'dark' ? 'rgb(30, 41, 59)' : 'white' }} scope="col" className="px-6 py-3">
-                                            Category
                                         </th>
                                         <th style={{ color: mode === 'dark' ? 'rgb(30, 41, 59)' : 'white' }} scope="col" className="px-6 py-3">
-                                            Date
                                         </th>
                                         <th style={{ color: mode === 'dark' ? 'rgb(30, 41, 59)' : 'white' }} scope="col" className="px-6 py-3">
-                                            Action
                                         </th>
                                     </tr>
                                 </thead>
-
                                 {/* tbody  */}
                                 {getAllBlog.length > 0
                                     ?
                                     <>
                                         {getAllBlog.map((item, index) => {
-                                            const {thumbnail, date} = item;
+                                            const {thumbnail, date, id} = item;
                                             console.log(item)
                                             return (
-                                                <tbody key={index}>
+                                                <tbody>
                                                     <tr className=" border-b-2" style={{ background: mode === 'dark' ? 'rgb(30, 41, 59)' : 'white' }}>
                                                         {/* S.No   */}
                                                         <td style={{ color: mode === 'dark' ? 'white' : 'black' }} className="px-6 py-4">
@@ -160,7 +159,7 @@ function Dashboard() {
                                                             {date}
                                                         </td>
                                                         {/* Delete Blog  */}
-                                                        <td style={{ color: mode === 'dark' ? 'white' : 'black' }} className="px-6 py-4">
+                                                        <td onClick={()=> deleteBlogs(id)} style={{ color: mode === 'dark' ? 'white' : 'black' }} className="px-6 py-4">
                                                             <button className=' px-4 py-1 rounded-lg text-white font-bold bg-red-500'>
                                                                 Delete
                                                             </button>
@@ -177,6 +176,7 @@ function Dashboard() {
                             </table>
                         </div>
                     </div>
+
 
                 </div>
             </div>
