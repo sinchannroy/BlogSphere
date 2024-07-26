@@ -82,7 +82,7 @@ export default function Nav() {
                             {/* Logo Image  */}
                             <img
                                 className=' w-10 h-10 '
-                                src={require('../../../src/assets/blogIcon.png')}
+                                src={'../../../src/assets/blogIcon.png'}
                             />
                             {/* Logo Text  */}
                             <span>
